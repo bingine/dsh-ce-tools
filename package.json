@@ -69,6 +69,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/satan9394/dsh-cheat-engine.git"
+    "url": "git+https://github.com/bingine/dsh-ce-tools.git"
+  },
+  "homepage": "https://github.com/bingine/dsh-ce-tools#readme",
+  "bugs": {
+    "url": "https://github.com/bingine/dsh-ce-tools/issues"
   }
 }
