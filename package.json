@@ -1,6 +1,6 @@
 {
   "name": "dsh-ce-tools",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": false,
   "description": "让 AI 拥有 Cheat Engine 的能力：跨进程内存读写、全类型内存扫描（数值/AOB）、指针扫描、反汇编与汇编、AutoAssembler 脚本、.CT 地址表、CE Lua 脚本 —— 由 @bingine/cemem 内核实现，纯用户态、零外部依赖",
   "keywords": [
