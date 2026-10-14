@@ -9,7 +9,7 @@
  *
  * 但**两个插件的源码都只设置 `id` 和 `textContent`，从不设置 `data-plugin`**：
  *   · `dsh-get-admin/lib/client.js`      —— 只 `style.id = ...`
- *   · `dsh-cheat-engine/lib/client.js`   —— 只 `style.id = ...`
+ *   · `dsh-ce-tools/lib/client.js`       —— 只 `style.id = ...`
  *
  * 而且这个属性的**内容是错标的**：id 是 ce-tools 的进度浮层，`data-plugin`
  * 却写着 get-admin。所以 `data-plugin` 必然是**宿主**加的。

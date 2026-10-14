@@ -1,13 +1,13 @@
 # dsh-ce-tools
 
-> **包名与目录名是两件事**：npm 包名是 `dsh-ce-tools`（npm 封禁了 "cheat-engine" 一词），
-> 而本仓库的**目录**仍然叫 `dsh-cheat-engine`。看到路径里出现 `dsh-cheat-engine` 是正常的。
+> **包名是 `dsh-ce-tools`**（npm 封禁了 "cheat-engine" 一词，所以早期叫 `dsh-cheat-engine`）。
+> 如果你的本地 checkout 目录还叫 `dsh-cheat-engine`，那只是历史遗留的**目录名**，不影响任何功能。
 > 凡是"必须等于包名"的地方（客户端 `id`、服务端 `PACKAGE_NAME`、`cordis.patch.yml` 的
 > `name:`、profile 联接名）**只能写包名** —— 写错会让客户端模块重复注册、整个应用起不来
 > （真实踩过）。`test/startup.test.mjs` 会拦住这类错误。
 
-让 AI 拥有 Cheat Engine 的能力。由 **[@bingine/cemem](../../dsh-cheat-engine/node-cheat-engine)**
-（Cheat Engine 核心引擎的 Node.js 移植，仓库目录仍叫 `node-cheat-engine`）驱动，
+让 AI 拥有 Cheat Engine 的能力。由 **[@bingine/cemem](https://github.com/bingine/cemem)**
+（Cheat Engine 核心引擎的 Node.js 移植，**另一个独立仓库**）驱动，
 纯用户态、**不需要安装 Cheat Engine 本体**。
 
 注册 16 个模型可直接调用的工具，覆盖 CE 在用户态能做的核心工作：
@@ -45,7 +45,7 @@
 ### 接入（一条命令，幂等）
 
 ```powershell
-cd D:\Project\dsh-cheat-engine   # 本仓库根目录（**目录名**；包名是 dsh-ce-tools）
+cd <本仓库根目录>              # 目录名随意；判断依据是 package.json 里的包名 dsh-ce-tools
 node wire.mjs                 # 默认接入 desktop profile
 node wire.mjs --profile web   # 换 profile
 node wire.mjs --kernel <目录>  # 显式指定内核目录
@@ -68,7 +68,7 @@ node wire.mjs --unwire        # 卸载
 > ```yaml
 > - id: hmr
 >   config:
->     root: ["D:/Project/dsh-cheat-engine"]
+>     root: ["D:/Project/dsh-ce-tools"]   # ← 换成你本仓库的真实绝对路径
 > ```
 
 ### 验证是否激活

@@ -13,7 +13,8 @@
  *
  * ⚠️ 包名与目录名是两件事（改名时最容易踩的坑）：
  *   · **包名** = `package.json` 的 `name`（现在是 `dsh-ce-tools`）；
- *   · **仓库目录名** 仍然是 `dsh-cheat-engine`（本文件所在目录）。
+ *   · **目录名** 随意 —— 本仓库所在的目录可能叫 `dsh-cheat-engine`（改名前的历史遗留）
+ *     或 `dsh-ce-tools`（从 GitHub 克隆下来的默认名），**都不影响功能**。
  * 下面 `PACKAGE_NAME` 必须取**包名** —— 它同时用来建 profile 侧的联接、
  * 登记 profile 依赖、以及写加载行的 `name:`。写成目录名会让加载行指向一个
  * 不存在的包（`npm 封禁 "cheat-engine" 之后包名是 dsh-ce-tools`）。
@@ -53,8 +54,9 @@ const value = (name, fallback) => {
  *   1. `<profile>/node_modules/<PACKAGE_NAME>` 联接的目标名；
  *   2. profile `package.json` 的依赖键；
  *   3. 加载行的 `name: '<PACKAGE_NAME>'`。
- * 与目录名（`dsh-cheat-engine`）混淆会让 profile 里出现一个指向本仓库、
- * 但名字是旧包名的联接，而加载行又会去解析一个不存在的包。
+ * 与**目录名**（可能是 `dsh-cheat-engine` 或 `dsh-ce-tools`，取决于你怎么拿到这份代码）
+ * 混淆会让 profile 里出现一个指向本仓库、但名字是旧包名的联接，
+ * 而加载行又会去解析一个不存在的包。
  */
 const PACKAGE_NAME = "dsh-ce-tools";
 const ROW_ID = "cheat-engine";

@@ -6,7 +6,7 @@
  * 并且用注册表那套严格规则校验返回值（多键 / 缺必填 / 类型不符 / null 都算违规）。
  * 这样测试能挡住「在真环境里会让整次调用失败」的那类错误。
  *
- * @module dsh-cheat-engine/test/helpers/harness
+ * @module dsh-ce-tools/test/helpers/harness
  */
 import { apply, CONFIG_DEFAULTS } from "../../lib/index.js";
 import { validateSchemaValue } from "../../lib/toolkit.js";
