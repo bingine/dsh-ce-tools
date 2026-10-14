@@ -1,0 +1,39 @@
+# dsh-ce-tools 的**组合包（bundle）**声明。
+#
+# ## ⚠️ 包名 vs 目录名（改名踩过的坑）
+#
+# 本插件的 npm **包名**是 `dsh-ce-tools`（npm 封禁了 "cheat-engine" 一词），
+# 而仓库**目录名**仍然是 `dsh-cheat-engine`。下面 `name:` 只能写**包名**。
+# 硬编码旧包名会让加载行解析不到那个包，实测后果是**整个 web boot 失败、应用打不开**。
+#
+# ## 这个文件决定插件管理器里的结构
+#
+# 插件管理器把「组合包」渲染成一张卡片，卡片标题取自**包名**
+# （也就是 `dsh-ce-tools`），而卡片里「包含的组件」就是下面 `insert` 的每一行。
+# 所以：**父插件是 dsh-ce-tools，两个组件分别是它自己与 dsh-get-admin。**
+#
+# 这样做的动机：
+#   · 界面上只有**一张卡**，一眼能看出"这套东西由哪些部分组成"；
+#   · 每个组件仍然**可以单独启停**（这正是拆开的意义 ——
+#     提权能力可以关掉而不影响内存扫描工具）；
+#   · 两行之间的**依赖关系**仍然是真实的：`dsh-get-admin` 提供提权实现，
+#     `dsh-ce-tools` 通过模块解析取用它（未启用时自动接管界面与工具，
+#     见 lib/index.js 的"提权界面接管"那段）。
+#
+# ## ⚠️ 顺序有意义
+#
+# `dsh-get-admin` 排在前面：它提供 `getAdmin` 服务。
+# `dsh-ce-tools` 启动时会用 `ctx.get("getAdmin", false)` 探测这个服务，
+# 据此决定要不要接管提权界面 —— 先加载它，探测结果才准。
+#
+# ## ⚠️ 改这个文件前请先读
+#
+# 这个文件一旦损坏或行名写错，**整个 web boot 会失败、应用打不开**，
+# 并且 DSH 会把 profile 的 `cordis.patch.yml` 截断成几百字节（实测踩过）。
+# 改动后请用一个**隔离 profile** 先验证，再动日常使用的 profile。
+# `test/startup.test.mjs` 会检查这里的 `name:` 与 package.json 的包名一致。
+- insert:
+    - id: get-admin
+      name: dsh-get-admin
+    - id: cheat-engine
+      name: 'dsh-ce-tools'

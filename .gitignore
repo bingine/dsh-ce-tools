@@ -1,0 +1,27 @@
+# 内核驱动缓存（下载的安装包、解出的 DBK64.sys、解包工具）
+# 都是可再生成的产物，不进版本库
+.cache/
+
+# 依赖与临时文件
+node_modules/
+*.log
+
+# Cheat Engine 官方源码（第三方 GPL 源码，约 45 MB / 2497 个文件）
+# 它只是本地查阅用的参考实现，不属于本仓库的产物
+ce-src/
+
+# 内核（npm: @bingine/cemem）是**独立仓库**，在本地是子目录。
+# 不排除的话父仓库会把它当成 gitlink（submodule）来记录，指针指向一个
+# 并不存在的提交，克隆出来是个空目录。
+node-cheat-engine/
+
+# 探针 / 证据 / 反向验证脚本：本地调试产物
+tmp-*
+
+# 各类备份（发布前备份、改名备份等）
+*.bak-*
+*.bak
+package.json.bak-*
+
+# 说明：CheatTestWindow.exe（93 KB）**刻意保留** —— 它是
+# tools/read-test-window.mjs 用的测试目标进程，不是随手丢的产物。

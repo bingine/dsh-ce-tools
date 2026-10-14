@@ -1,0 +1,74 @@
+{
+  "name": "dsh-ce-tools",
+  "version": "0.1.9",
+  "private": false,
+  "description": "让 AI 拥有 Cheat Engine 的能力：跨进程内存读写、全类型内存扫描（数值/AOB）、指针扫描、反汇编与汇编、AutoAssembler 脚本、.CT 地址表、CE Lua 脚本 —— 由 @bingine/cemem 内核实现，纯用户态、零外部依赖",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "cheat-engine",
+    "memory-scanner",
+    "reverse-engineering"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": []
+    }
+  },
+  "files": [
+    "lib",
+    "icons",
+    "cordis.patch.yml",
+    "README.md",
+    "wire.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "os": [
+    "win32"
+  ],
+  "scripts": {
+    "check": "node --check lib/index.js && node --check lib/client.js && node --check lib/toolkit.js && node --check lib/progress.js && node --check lib/download-consent.js && node --check lib/kernel.js && node --check lib/kernel-paths.js && node --check lib/kernel-driver.js && node --check lib/retry.js && node --check lib/elevation.js && node --check lib/elevation-impl.js && node --check lib/elevation-backend.js && node --check lib/values.js && node --check lib/session.js && node --check lib/remote/protocol.js && node --check lib/remote/helper.js && node --check lib/remote/worker.js && node --check lib/remote/backend.js && node --check lib/remote/launch.js && node --check lib/remote/kernel-elevate.js && node --check lib/remote/kernel-elevate-runner.js && node --check lib/tools/shared.js && node --check lib/tools/process.js && node --check lib/tools/memory.js && node --check lib/tools/scan.js && node --check lib/tools/asm.js && node --check lib/tools/lua.js && node --check lib/tools/table.js && node --check lib/tools/kernel.js && node --check lib/tools/elevation.js && node --check wire.mjs && node --check test/soak.mjs && node --check test/startup.test.mjs && node --check test/acquire-local-cepack.test.mjs && node --check tools/verify-guards.mjs && node tools/check-client-id.mjs",
+    "test:unit": "node --test test/unit.test.mjs",
+    "test:e2e": "node --test test/e2e.test.mjs",
+    "test:remote": "node --test test/remote.test.mjs",
+    "test:retry": "node --test test/retry.test.mjs",
+    "test:cordis": "node --test test/cordis.test.mjs",
+    "test:elevation-source": "node --test test/elevation-source.test.mjs",
+    "test:kernel": "node --test test/kernel-driver.test.mjs test/kernel-tool.test.mjs test/kernel-elevate.test.mjs",
+    "test:startup": "node --test test/startup.test.mjs test/acquire-local-cepack.test.mjs",
+    "verify:guards": "node tools/verify-guards.mjs",
+    "test": "node test/run-tests.mjs",
+    "test:raw": "node --test test/unit.test.mjs test/e2e.test.mjs test/remote.test.mjs test/retry.test.mjs test/cordis.test.mjs test/client-entry.test.mjs test/download-progress.test.mjs test/elevation-source.test.mjs test/kernel-driver.test.mjs test/kernel-tool.test.mjs test/kernel-elevate.test.mjs",
+    "verify:kernel": "node tools/verify-kernel-local.mjs",
+    "soak": "node test/soak.mjs 40 1",
+    "wire": "node wire.mjs",
+    "unwire": "node wire.mjs --unwire"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@bingine/cemem": "^0.2.2",
+    "dsh-get-admin": "^1.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satan9394/dsh-cheat-engine.git"
+  }
+}
